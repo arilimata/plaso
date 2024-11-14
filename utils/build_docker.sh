@@ -20,6 +20,16 @@ docker run log2timeline/plaso log2timeline --version 2>&1 | tee ${LOGFILE};
 
 VERSION=$( grep -e '^plaso - log2timeline version ' ${LOGFILE} | sed 's/^plaso - log2timeline version //' );
 
+if [ -z "$IDENTIFIER" ]; then
+  echo "Error: Docker image identifier not found."
+  exit ${EXIT_FAILURE}
+fi
+
+if [ -z "$VERSION" ]; then
+  echo "Error: Plaso version not found."
+  exit ${EXIT_FAILURE}
+fi
+
 docker tag ${IDENTIFIER} log2timeline/plaso:${VERSION}
 docker tag ${IDENTIFIER} log2timeline/plaso:staging
 docker tag ${IDENTIFIER} log2timeline/plaso:latest

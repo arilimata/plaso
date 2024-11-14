@@ -26,11 +26,11 @@ RUN apt-get -y update && \
 
 # Set terminal to UTF-8 by default
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 WORKDIR /usr/local/bin
-COPY "plaso-switch.sh" "plaso-switch.sh"
+COPY "plaso-switch.sh" "."
 RUN chmod a+x plaso-switch.sh
 
 VOLUME ["/data"]
